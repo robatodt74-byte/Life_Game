@@ -1,0 +1,158 @@
+:root {
+  color-scheme: dark;
+  --bg: #101114;
+  --panel: #1a1d22;
+  --panel-2: #22262d;
+  --text: #f1f4f8;
+  --muted: #9ea8b6;
+  --line: #343a45;
+  --cell: #48d597;
+  --cell-hot: #d6f26a;
+  --accent: #4da3ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) auto minmax(260px, 360px) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.title p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #586272;
+  background: #2a3039;
+}
+
+button.primary {
+  border-color: #2f7acc;
+  background: var(--accent);
+  color: #06101b;
+  font-weight: 700;
+}
+
+.sliders {
+  display: grid;
+  gap: 8px;
+}
+
+.sliders label {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.stats {
+  display: flex;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.stats strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.board-wrap {
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  min-height: 0;
+}
+
+canvas {
+  display: block;
+  width: min(100%, calc((100vh - 118px) * 1.5));
+  max-height: calc(100vh - 118px);
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #090a0d;
+  box-shadow: 0 18px 60px rgb(0 0 0 / 30%);
+  cursor: crosshair;
+  touch-action: none;
+}
+
+@media (max-width: 900px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .controls,
+  .stats {
+    justify-content: space-between;
+  }
+
+  button {
+    flex: 1 1 120px;
+  }
+
+  canvas {
+    width: 100%;
+    max-height: none;
+  }
+}
